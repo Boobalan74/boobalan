@@ -1,0 +1,165 @@
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+                html,body
+                {
+                    height:100%;
+                }
+
+                body
+                {
+                    background-image: url("/static/images/T6.jpg");
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: 100% 100%;
+                }
+
+                table
+                {
+                    
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+                    
+                    -webkit-transform:translate(-50%,-50%);
+                        transform:translate(-50%,-50%);
+                    
+                    width:800px;
+                    overflow:hidden;
+                    box-shadow:0 0 20px rgba(0,0,0);
+
+                }
+
+                th,td
+                {
+                    padding:10px;
+                    position:relative;
+                    text-align:center;
+                    color:rgba(0,0,0,0.7);
+                    cursor:default;
+                }
+
+                th
+                {
+                    background-color:rgba(0,0,0,0.3);
+                }
+
+                tbody th
+                {
+                    text-align:left;
+                    white-space:nowrap;
+                }
+
+                td
+                {
+                    background-color:rgba(0,255,255,0.1);
+                }
+
+                tbody>tr:hover th,tbody>tr:hover td
+                {
+                    background:rgba(255,255,255,0.2);
+                }
+
+                td:hover:after,thead th:hover:after
+                {
+                    content:"";
+                    position:absolute;
+                    z-index:-2;
+                    top:-5000px;
+                    left:0;
+                    width:100%;
+                    height:10000px;
+                    background:rgba(255,255,255,0.2);
+                }
+
+                thead tr th:first-child:hover:after
+                {
+                    content:"";
+                    position:absolute;
+                    z-index:-2;
+                    top:-5000px;
+                    left:0;
+                    width:100%;
+                    height:10000px;
+                    background:rgba(0,0,0,0.01);
+                }
+    </style>
+</head>
+<body><br><br><br>
+    <center><h1  style="color: white;">PERSONAL_INFORMATION_DATABASE</h1></center>
+    <table>
+
+
+    <tr>
+
+        
+
+    
+        <thead>
+            <tr>
+
+                <th  style="color: white;" class="header-item items">image</th>
+                <th  style="color: white;" class="header-item items">firstname</th>
+                <th  style="color: white;" class="header-item items">lastname</th>
+                <th  style="color: white;" class="header-item items">age</th>
+                <th  style="color: white;" class="header-item items">address</th>
+                <th  style="color: white;" class="header-item items">phone</th>
+                <th  style="color: white;" class="header-item items">city</th>
+                <th  style="color: white;" class="header-item items">state</th>
+                <th  style="color: white;" class="header-item items">country</th>   
+                <th  style="color: white;" class="header-item items">EDIT</th>  
+                <th  style="color: white;" class="header-item items">DELETE</th>   
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for model in models %}
+            <tr>
+                
+                <tr class="table-rows">
+
+                    <td class="items">
+                        <img class="w-5" src="{{ model.user_image.url }}" alt="User Image" height="100" width="100">	
+                    </td>
+                    <td  style="color: white;" class="items">{{ model.firstname }}</td>
+                    <td  style="color: white;" class="items">{{ model.lastname }}</td>
+                    <td  style="color: white;"class="items">{{ model.age }}</td>
+                    <td  style="color: white;" class="items">{{ model.address }}</td>
+                    <td  style="color: white;" class="items">{{ model.phone }}</td>
+                    <td  style="color: white;" class="items">{{ model.city }}</td>
+                    <td  style="color: white;" class="items">{{ model.state }}</td>
+                    <td  style="color: white;" class="items">{{ model.country }}</td>
+
+                    <td>
+                        <a href="{% url 'update' model.id %}" style="color: white;font-size: 25px;">update</a>
+                    </td>
+                    
+                    <td>
+                        <a href="{% url 'delete' model.id %}" style="color: white;font-size: 25px;">Delete</a>
+                    </td>
+                    
+                    
+                </tr>
+                
+                
+            </tr>
+            {% endfor %}
+
+  
+            
+                
+
+            
+        </tbody>
+    </tr>  
+    </table>
+</body>
+</html>
